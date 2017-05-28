@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MoneyTracker</string>
+    <string name="income_label">Income</string>
+    <string name="expense_label">Expense</string>
+    <string name="balance_label">Balance</string>
+    <string name="title_activity_income">IncomeActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

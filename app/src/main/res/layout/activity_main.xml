@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    tools:context="com.example.nune.moneytracker.MainActivity"
+    android:orientation="vertical"
+    android:padding="100dp"
+
+    android:background="@color/background">
+
+    <Button
+        android:id="@+id/incomeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/income_label"
+        android:textSize="30dp"
+        android:background="@color/background"></Button>
+    <Button
+        android:id="@+id/expenseButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="@string/expense_label"
+        android:background="@color/background2"/>
+    <Button
+        android:id="@+id/BalanceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="@string/balance_label"
+        android:background="@color/background3"/>
+
+</LinearLayout>
