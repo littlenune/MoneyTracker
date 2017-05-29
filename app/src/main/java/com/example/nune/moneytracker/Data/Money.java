@@ -8,8 +8,7 @@ import java.util.Date;
 
 public class Money {
     String description;
-    double expense;
-    Date d;
+    double value;
     String type;
 
     public String getType() {
@@ -20,10 +19,9 @@ public class Money {
         this.type = type;
     }
 
-    public Money(double expense, String description, String type, Date d){
-        this.expense = expense;
+    public Money(double expense, String description, String type){
+        this.value = expense;
         this.description = description;
-        this.d = d;
         this.type = type;
 
     }
@@ -36,20 +34,16 @@ public class Money {
         this.description = description;
     }
 
-    public Date getD() {
-        return d;
-    }
-
-    public void setD(Date d) {
-        this.d = d;
-    }
-
     public double getExpense() {
 
-        return expense;
+        return value;
     }
 
     public void setExpense(double expense) {
-        this.expense = expense;
+        this.value = expense;
+    }
+
+    public String toString(){
+        return value + " "  + description + " " + type;
     }
 }

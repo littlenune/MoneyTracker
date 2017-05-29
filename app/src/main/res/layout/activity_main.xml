@@ -4,33 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
     tools:context="com.example.nune.moneytracker.MainActivity"
     android:orientation="vertical"
-    android:padding="100dp"
+    android:weightSum="1">
 
-    android:background="@color/background">
 
-    <Button
+    <ListView
+        android:id="@+id/moneyTrackerList"
+        android:layout_width="wrap_content"
+        android:layout_height="165dp"
+        android:layout_weight="0.79" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/incomeButton"
-        android:layout_width="match_parent"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:text="@string/income_label"
-        android:textSize="30dp"
-        android:background="@color/background"></Button>
-    <Button
-        android:id="@+id/expenseButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="@string/expense_label"
-        android:background="@color/background2"/>
-    <Button
-        android:id="@+id/BalanceButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="@string/balance_label"
-        android:background="@color/background3"/>
+        android:layout_weight="0.09"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+
+    <!--<Button-->
+        <!--android:id="@+id/incomeButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/background"-->
+        <!--android:text="Add"-->
+        <!--android:textSize="30dp"></Button>-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/expenseButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/background2"-->
+        <!--android:text="@string/expense_label"-->
+        <!--android:textSize="30sp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/BalanceButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/background3"-->
+        <!--android:text="@string/balance_label"-->
+        <!--android:textSize="30dp" />-->
 
 </LinearLayout>
