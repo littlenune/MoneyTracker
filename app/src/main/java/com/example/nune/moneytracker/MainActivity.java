@@ -1,8 +1,6 @@
 package com.example.nune.moneytracker;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,20 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.nune.moneytracker.Data.Money;
 
 import java.util.ArrayList;
 
-import static com.example.nune.moneytracker.R.id.list_item;
-import static com.example.nune.moneytracker.R.id.money;
-import static com.example.nune.moneytracker.R.id.moneyTrackerList;
-
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Money> moneys;
-    ArrayAdapter<Money> moneyArrayAdapter;
+    ColorAdapter<Money> moneyArrayAdapter;
     ArrayAdapter<String> categoryAdap;
     ArrayList<String> categories;
     private static String type;
@@ -46,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView moneyList = (ListView) findViewById(R.id.moneyTrackerList);
         moneys = new ArrayList<Money>();
-        moneyArrayAdapter = new ArrayAdapter<Money>(this, android.R.layout.simple_list_item_1, moneys);
+        moneyArrayAdapter = new ColorAdapter<Money>(this, android.R.layout.select_dialog_item, moneys);
         moneyList.setAdapter(moneyArrayAdapter);
 
         FloatingActionButton incomeBtn = (FloatingActionButton) findViewById(R.id.incomeButton);

@@ -6,23 +6,22 @@
     android:padding="5dp">
 
 
-
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/valueInput"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint="      Enter amount       "
+        android:hint="Enter amount"
         android:inputType="numberDecimal"
         android:textAlignment="center" />
 
     <EditText
         android:id="@+id/desInput"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="Description"
         android:inputType="text"
@@ -32,7 +31,7 @@
 
     <Button
         android:id="@+id/submitBtn"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:text="Add"
