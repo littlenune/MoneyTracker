@@ -1,9 +1,7 @@
 package com.example.nune.moneytracker.Data;
 
-import java.util.Date;
-
 /**
- * Created by nune on 5/11/2017 AD.
+ * Created by nune on 5/30/2017 AD.
  */
 
 public class Money {

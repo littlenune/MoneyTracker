@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.example.nune.moneytracker.Data.Money;
+import com.example.nune.moneytracker.Data.Record;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,4 +34,6 @@ public class ColorAdapter<Money> extends ArrayAdapter {
 
         return view;
     }
+
+
 }

@@ -1,6 +1,9 @@
 package com.example.nune.moneytracker;
 
+
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,83 +12,112 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import com.example.nune.moneytracker.Data.Money;
+import com.example.nune.moneytracker.Data.Record;
+import com.example.nune.moneytracker.Data.MoneyList;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Money> moneys;
-    ColorAdapter<Money> moneyArrayAdapter;
-    ArrayAdapter<String> categoryAdap;
-    ArrayList<String> categories;
-    private static String type;
-    private Dialog dialog;
-    EditText amount,description;
-    Spinner categorySpinner;
+    public static ArrayList<MoneyList> moneyLists;
+    Calendar dateTime = Calendar.getInstance();
+
+    FloatingActionButton createListBtn;
+    Dialog dialog;
+    EditText nameTxt;
+    ListView lists;
+    ArrayAdapter<MoneyList> adapter;
+    private String realDate;
+    public static int currentIndex;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        categories = new ArrayList<String>();
-        categories.add("Income");
-        categories.add("Expense");
+        lists = (ListView) findViewById(R.id.moneyList);
 
-        ListView moneyList = (ListView) findViewById(R.id.moneyTrackerList);
-        moneys = new ArrayList<Money>();
-        moneyArrayAdapter = new ColorAdapter<Money>(this, android.R.layout.select_dialog_item, moneys);
-        moneyList.setAdapter(moneyArrayAdapter);
+        lists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        FloatingActionButton incomeBtn = (FloatingActionButton) findViewById(R.id.incomeButton);
-        incomeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(MainActivity.this, MoneyTrackActivity.class);
+                startActivity(intent);
+                currentIndex = position;
+                Log.d("POSITION",String.valueOf(currentIndex));
+
+            }
+        });
+
+        moneyLists = new ArrayList<MoneyList>();
+
+
+        createListBtn = (FloatingActionButton) findViewById(R.id.addMoneyListBtn);
+
+        createListBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showInput();
             }
         });
+
+        updateAdapter();
+
     }
 
 
+    public void updateAdapter(){
+        adapter = new ArrayAdapter<MoneyList>(this, android.R.layout.simple_list_item_1, moneyLists);
+        lists.setAdapter(adapter);
+
+    }
+
+
+    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener(){
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            realDate = month+1 + "/" + dayOfMonth  + "/" +year ;
+        }
+    };
+
+    private void updateDate(){
+        new DatePickerDialog(this,d,dateTime.get(Calendar.YEAR),dateTime.get(Calendar.MONTH),dateTime.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
     public void showInput(){
         dialog = new Dialog(MainActivity.this);
-        dialog.setTitle("Let's track your money!");
-        dialog.setContentView(R.layout.input_layout);
-        amount = (EditText) dialog.findViewById(R.id.valueInput);
-        description = (EditText) dialog.findViewById(R.id.desInput);
+        dialog.setContentView(R.layout.activity_money);
+        nameTxt = (EditText) dialog.findViewById(R.id.nameTxt);
 
-        categorySpinner = (Spinner) dialog.findViewById(R.id.spinner);
+        Button btn = (Button) dialog.findViewById(R.id.createBtn);
+        Button dateBtn = (Button) dialog.findViewById(R.id.selectDateBtn);
 
-        categoryAdap = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,categories);
-        categorySpinner.setAdapter(categoryAdap);
+        dateBtn.setOnClickListener(new View.OnClickListener(){
 
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                type = categories.get(position);
-                Log.d("None",type);
-           }
-
-         @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-         }
-
-        });
-
-        Button btn = (Button) dialog.findViewById(R.id.submitBtn);
-        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double value = (Double.parseDouble(amount.getText().toString()));
-                String des = description.getText().toString();
-                moneys.add(new Money(value,des,type));
-                moneyArrayAdapter.notifyDataSetChanged();
+                updateDate();
+
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                String name = nameTxt.getText().toString();
+                moneyLists.add(new MoneyList(name,new Record(),realDate));
+                updateAdapter();
+
                 dialog.dismiss();
             }
         });
@@ -94,4 +126,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+
+
+
+
 
