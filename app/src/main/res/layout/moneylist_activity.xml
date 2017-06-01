@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nune.moneytracker.MainActivity"
+    tools:context="com.example.nune.moneytracker.MoneyTracker.MoneyActivity"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -37,5 +37,19 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/alarmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@android:drawable/ic_lock_idle_alarm"
+        android:layout_marginStart="27dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="27dp" />
 
 </android.support.constraint.ConstraintLayout>

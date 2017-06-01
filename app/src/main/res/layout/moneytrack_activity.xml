@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nune.moneytracker.MainActivity"
+    tools:context="com.example.nune.moneytracker.MoneyTracker.MoneyActivity"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -48,48 +48,26 @@
         android:id="@+id/balanceTxt"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="1dp"
         android:text="Balance"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintRight_toLeftOf="@+id/incomeButton"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="16dp"
+        android:textColor="@color/background2"
         app:layout_constraintBottom_toBottomOf="@+id/incomeButton"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="1dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="1dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/incomeButton"
         app:layout_constraintTop_toTopOf="@+id/incomeButton"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="10dp" />
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.0" />
 
-
-    <!--<Button-->
-    <!--android:id="@+id/incomeButton"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@color/background"-->
-    <!--android:text="Add"-->
-    <!--android:textSize="30dp"></Button>-->
-
-
-    <!--<Button-->
-    <!--android:id="@+id/expenseButton"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@color/background2"-->
-    <!--android:text="@string/expense_label"-->
-    <!--android:textSize="30sp" />-->
-
-    <!--<Button-->
-    <!--android:id="@+id/BalanceButton"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@color/background3"-->
-    <!--android:text="@string/balance_label"-->
-    <!--android:textSize="30dp" />-->
 
 </android.support.constraint.ConstraintLayout>

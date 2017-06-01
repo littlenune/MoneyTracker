@@ -1,4 +1,4 @@
-package com.example.nune.moneytracker;
+package com.example.nune.moneytracker.UI;
 
 import android.content.Context;
 import android.graphics.Color;
