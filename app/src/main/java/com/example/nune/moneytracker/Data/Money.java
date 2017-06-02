@@ -8,6 +8,7 @@ public class Money {
     String description;
     double value = 0;
     String type;
+    String date;
 
     public String getType() {
         return type;
@@ -17,10 +18,11 @@ public class Money {
         this.type = type;
     }
 
-    public Money(double expense, String description, String type){
+    public Money(double expense, String description, String type,String date){
         this.value = expense;
         this.description = description;
         this.type = type;
+        this.date = date;
 
     }
 
@@ -42,6 +44,6 @@ public class Money {
 
 
     public String toString(){
-        return value + " "  + description + " " + type;
+        return value + "   \" "  + description + " \"   " + type + "  " + date;
     }
 }

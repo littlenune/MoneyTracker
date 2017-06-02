@@ -22,10 +22,9 @@ import java.util.Calendar;
 
 public class MoneyDialog extends DialogFragment implements View.OnClickListener {
 
-    String date,title = null;
-    Calendar calendar = Calendar.getInstance();
+    String title;
     EditText nameTxt;
-    Button dateBtn,createBtn;
+    Button createBtn;
     Communicator communicator;
 
 
@@ -44,9 +43,7 @@ public class MoneyDialog extends DialogFragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.moneylist_input,container);
         nameTxt = (EditText) view.findViewById(R.id.nameTxt);
         createBtn = (Button) view.findViewById(R.id.createBtn);
-        dateBtn = (Button) view.findViewById(R.id.selectDateBtn);
         createBtn.setOnClickListener(this);
-        dateBtn.setOnClickListener(this);
         return view;
     }
 
@@ -54,27 +51,12 @@ public class MoneyDialog extends DialogFragment implements View.OnClickListener 
     public void onClick(View v) {
         title = String.valueOf(nameTxt.getText());
         if (v.getId() == R.id.createBtn) {
-            if ( date != null ) {
-                communicator.onDialogMessage(new MoneyList(title, new Record(), date));
+            if ( !title.equals("")) {
+                communicator.onDialogMessage(new MoneyList(title, new Record()));
                 dismiss();
             }
-            else Toast.makeText(getActivity(),"Select date or fill in title",Toast.LENGTH_SHORT).show();
-        } else if (v.getId() == R.id.selectDateBtn) {
-                updateDate();
-        }
-    }
-
-    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener(){
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            date = month+1 + "/" + dayOfMonth  + "/" +year ;
+            else Toast.makeText(getActivity(),"Please fill in list name",Toast.LENGTH_SHORT).show();
         }
 
-    };
-
-    private void updateDate(){
-        new DatePickerDialog(getActivity(),d,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
-
 }

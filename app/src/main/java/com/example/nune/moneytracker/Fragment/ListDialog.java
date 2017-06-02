@@ -1,5 +1,6 @@
 package com.example.nune.moneytracker.Fragment;
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,14 +10,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.nune.moneytracker.Data.Money;
+import com.example.nune.moneytracker.Data.MoneyList;
+import com.example.nune.moneytracker.Data.Record;
 import com.example.nune.moneytracker.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by nune on 6/moneybg/2017 AD.
@@ -24,15 +29,15 @@ import java.util.ArrayList;
 
 public class ListDialog extends DialogFragment implements View.OnClickListener  {
 
-    String type,des,val;
+    String type,des,val,date;
     double value;
     ArrayAdapter<String> categoryAdap;
     ArrayList<String> categories;
     EditText amount,description;
-    Button submitBtn;
+    Button submitBtn,dateBtn;
     Spinner categorySpinner;
     Communicator communicator;
-
+    Calendar calendar = Calendar.getInstance();
 
     public interface Communicator {
         public void onDialogMessage(Money m);
@@ -50,9 +55,11 @@ public class ListDialog extends DialogFragment implements View.OnClickListener  
         amount = (EditText) view.findViewById(R.id.valueInput);
         description = (EditText) view.findViewById(R.id.desInput);
         submitBtn = (Button) view.findViewById(R.id.submitBtn);
+        dateBtn = (Button) view.findViewById(R.id.selectDateBtn);
         categorySpinner = (Spinner) view.findViewById(R.id.spinner);
         createSpinner();
         submitBtn.setOnClickListener(this);
+        dateBtn.setOnClickListener(this);
 
         return view;
     }
@@ -62,14 +69,17 @@ public class ListDialog extends DialogFragment implements View.OnClickListener  
         val = amount.getText().toString();
         des = description.getText().toString();
         if (v.getId() == R.id.submitBtn) {
-            if ( val.equals("") || des.equals("")){
-                Toast.makeText(getActivity(),"Please fill in all",Toast.LENGTH_SHORT).show();
+            if ( val.equals("") || des.equals("") || date == null){
+                Toast.makeText(getActivity(),"Please fill in all information",Toast.LENGTH_SHORT).show();
             }
             else {
                 value = Double.parseDouble(val);
-                communicator.onDialogMessage(new Money(value, des, type));
+                communicator.onDialogMessage(new Money(value, des, type,date));
                 dismiss();
             }
+        }
+        else if (v.getId() == R.id.selectDateBtn) {
+            updateDate();
         }
     }
 
@@ -91,8 +101,21 @@ public class ListDialog extends DialogFragment implements View.OnClickListener  
 
     public void setCategorySpinner(){
         categories = new ArrayList<String>();
-        categories.add("Income");
-        categories.add("Expense");
+        categories.add("INCOME");
+        categories.add("EXPENSE");
+    }
+
+    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener(){
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            date = month+1 + "/" + dayOfMonth  + "/" +year ;
+        }
+
+    };
+
+    private void updateDate(){
+        new DatePickerDialog(getActivity(),d,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
 

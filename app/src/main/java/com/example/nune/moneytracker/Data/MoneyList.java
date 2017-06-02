@@ -7,17 +7,10 @@ package com.example.nune.moneytracker.Data;
 public class MoneyList {
     private String name;
     private Record record;
-    private String calendar;
 
-    public String getCalendar() {
-        return calendar;
-    }
-
-    public MoneyList(String name, Record record, String calendar){
+    public MoneyList(String name, Record record){
         this.name = name;
         this.record = record;
-        this.calendar = calendar;
-
     }
 
     public String getName() {
@@ -30,6 +23,6 @@ public class MoneyList {
 
 
     public String toString(){
-        return getName() + " : " +getCalendar();
+        return getName() ;
     }
 }

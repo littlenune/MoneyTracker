@@ -17,7 +17,7 @@ public class Record {
     public double getBalance() {
         balance = 0;
         for ( Money m : moneys){
-            if ( m.getType().equals("Expense") ) balance -= m.getValue();
+            if ( m.getType().equals("EXPENSE") ) balance -= m.getValue();
             else balance += m.getValue();
         }
 

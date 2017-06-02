@@ -30,6 +30,14 @@
         />
 
     <Button
+        android:id="@+id/selectDateBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:text="Select Date"
+        android:textColor="@android:color/white" />
+
+    <Button
         android:id="@+id/submitBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"

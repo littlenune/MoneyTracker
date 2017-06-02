@@ -29,7 +29,6 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.moneylist_activity);
-
         moneyListView = (ListView) findViewById(R.id.moneyList);
         moneyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -39,7 +38,6 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
             }
 
         });
-
         moneyLists = new ArrayList<MoneyList>();
 
         createListBtn = (FloatingActionButton) findViewById(R.id.addMoneyListBtn);
@@ -54,7 +52,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
     @Override
     public void updateAdapter(ArrayList<MoneyList> moneyLists) {
-        adapter = new ArrayAdapter<MoneyList>(this, android.R.layout.simple_list_item_1, moneyLists);
+        adapter = new ArrayAdapter<MoneyList>(this, android.R.layout.select_dialog_item, moneyLists);
         moneyListView.setAdapter(adapter);
     }
 

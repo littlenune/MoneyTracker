@@ -27,15 +27,16 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
 
 
     public static ColorAdapter<Money> moneyArrayAdapter;
-    TextView balance;
+    TextView balanceTxt;
     ListView listView;
+    double balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.moneytrack_activity);
-        balance = (TextView) findViewById(R.id.balanceTxt);
-        balance.setText(String.valueOf(moneyLists.get(currentIndex).getRecord().getBalance()));
+        balanceTxt = (TextView) findViewById(R.id.balanceTxt);
+        balanceTxt.setText(String.valueOf(moneyLists.get(currentIndex).getRecord().getBalance()));
         listView = (ListView) findViewById(R.id.moneyTrackerList);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -97,7 +98,8 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
     }
 
     public void updateBalance(){
-        balance.setText(String.valueOf(moneyLists.get(currentIndex).getRecord().getBalance()));
+        balance = moneyLists.get(currentIndex).getRecord().getBalance();
+        balanceTxt.setText(String.valueOf(balance));
     }
 
 }
