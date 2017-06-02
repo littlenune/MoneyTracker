@@ -5,7 +5,7 @@ import com.example.nune.moneytracker.Data.MoneyList;
 
 
 /**
- * Created by nune on 6/1/2017 AD.
+ * Created by nune on 6/moneybg/2017 AD.
  */
 
 public class MoneyPresenter  {

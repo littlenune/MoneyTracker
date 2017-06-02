@@ -1,4 +1,4 @@
-package com.example.nune.moneytracker.UI;
+package com.example.nune.moneytracker.Fragment;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
@@ -17,7 +17,7 @@ import com.example.nune.moneytracker.R;
 import java.util.Calendar;
 
 /**
- * Created by nune on 6/1/2017 AD.
+ * Created by nune on 6/moneybg/2017 AD.
  */
 
 public class MoneyDialog extends DialogFragment implements View.OnClickListener {
@@ -74,7 +74,7 @@ public class MoneyDialog extends DialogFragment implements View.OnClickListener 
     };
 
     private void updateDate(){
-        new DatePickerDialog(getContext(),d,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+        new DatePickerDialog(getActivity(),d,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
 }

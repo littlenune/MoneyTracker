@@ -1,5 +1,6 @@
 package com.example.nune.moneytracker.MoneyTracker;
 
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -9,12 +10,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import com.example.nune.moneytracker.Data.MoneyList;
+import com.example.nune.moneytracker.Fragment.MoneyDialog;
 import com.example.nune.moneytracker.R;
-import com.example.nune.moneytracker.UI.MoneyDialog;
+
 import java.util.ArrayList;
 
-public class MoneyActivity extends AppCompatActivity implements MoneyDialog.Communicator , MoneyView {
+public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.Communicator, MoneyView{
 
     public static ArrayList<MoneyList> moneyLists;
     public static int currentIndex;
@@ -26,12 +29,15 @@ public class MoneyActivity extends AppCompatActivity implements MoneyDialog.Comm
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.moneylist_activity);
+
         moneyListView = (ListView) findViewById(R.id.moneyList);
         moneyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               createMoney(position);
+                createMoney(position);
             }
+
         });
 
         moneyLists = new ArrayList<MoneyList>();
@@ -66,8 +72,10 @@ public class MoneyActivity extends AppCompatActivity implements MoneyDialog.Comm
     }
 
     public void createMoney(int position){
-        Intent intent = new Intent(MoneyActivity.this, MoneyTrackActivity.class);
+        Intent intent = new Intent(MoneyListActivity.this, ListActivity.class);
         startActivity(intent);
         currentIndex = position;
     }
 }
+
+

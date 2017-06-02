@@ -1,4 +1,4 @@
-package com.example.nune.moneytracker.UI;
+package com.example.nune.moneytracker.Fragment;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,10 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.example.nune.moneytracker.Data.Money;
-import com.example.nune.moneytracker.Data.Record;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
