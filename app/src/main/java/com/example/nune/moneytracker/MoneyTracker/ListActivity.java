@@ -39,7 +39,6 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
             @Override
             public void onClick(View v) {
                 showInputDialog();
-                updateAdapter(moneyLists);
             }
         });
     }
@@ -60,6 +59,8 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
     @Override
     public void onDialogMessage(Money m) {
         moneyLists.get(currentIndex).getRecord().getMoneys().add(m);
+        updateAdapter(moneyLists);
+
 //            getBalance();
     }
 

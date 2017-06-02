@@ -1,6 +1,5 @@
 package com.example.nune.moneytracker.MoneyTracker;
 
-import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;

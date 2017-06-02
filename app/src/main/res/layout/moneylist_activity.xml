@@ -7,8 +7,8 @@
     tools:context="com.example.nune.moneytracker.MoneyTracker.MoneyListActivity"
     android:orientation="vertical"
     android:weightSum="1"
+    android:background="@drawable/copu"
     >
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addMoneyListBtn"
