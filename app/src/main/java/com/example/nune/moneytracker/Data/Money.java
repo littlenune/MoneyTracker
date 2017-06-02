@@ -6,7 +6,7 @@ package com.example.nune.moneytracker.Data;
 
 public class Money {
     String description;
-    double value;
+    double value = 0;
     String type;
 
     public String getType() {

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.nune.moneytracker.Data.Money;
 import com.example.nune.moneytracker.R;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class ListDialog extends DialogFragment implements View.OnClickListener  {
 
-    String type,des;
+    String type,des,val;
     double value;
     ArrayAdapter<String> categoryAdap;
     ArrayList<String> categories;
@@ -58,11 +59,17 @@ public class ListDialog extends DialogFragment implements View.OnClickListener  
 
     @Override
     public void onClick(View v) {
-        value = Double.parseDouble(amount.getText().toString());
+        val = amount.getText().toString();
         des = description.getText().toString();
         if (v.getId() == R.id.submitBtn) {
-            communicator.onDialogMessage(new Money(value,des,type));
-            dismiss();
+            if ( val.equals("") || des.equals("")){
+                Toast.makeText(getActivity(),"Please fill in all",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                value = Double.parseDouble(val);
+                communicator.onDialogMessage(new Money(value, des, type));
+                dismiss();
+            }
         }
     }
 

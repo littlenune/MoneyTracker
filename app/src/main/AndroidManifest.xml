@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MoneyTracker.MoneyListActivity" >
+        <activity android:name=".Main.MoneyListActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".MoneyTracker.ListActivity"></activity>
+        <activity android:name=".Main.ListActivity"></activity>
     </application>
 
 </manifest>

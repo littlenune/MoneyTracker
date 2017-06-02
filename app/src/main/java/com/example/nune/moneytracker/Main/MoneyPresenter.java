@@ -1,4 +1,4 @@
-package com.example.nune.moneytracker.MoneyTracker;
+package com.example.nune.moneytracker.Main;
 
 import com.example.nune.moneytracker.Data.Money;
 import com.example.nune.moneytracker.Data.MoneyList;
@@ -12,12 +12,10 @@ public class MoneyPresenter  {
     private MoneyView view;
     private MoneyList moneyList;
 
-    private Money money;
-
    public MoneyPresenter(MoneyView view,MoneyList moneyList){
        this.moneyList = moneyList;
        this.view = view;
-       
    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.nune.moneytracker.MoneyTracker;
+package com.example.nune.moneytracker.Main;
 
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.Communicator, MoneyView{
 
+    MoneyPresenter presenter;
     public static ArrayList<MoneyList> moneyLists;
     public static int currentIndex;
     public FloatingActionButton createListBtn;

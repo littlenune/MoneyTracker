@@ -1,6 +1,5 @@
-package com.example.nune.moneytracker.MoneyTracker;
+package com.example.nune.moneytracker.Main;
 
-import com.example.nune.moneytracker.Data.Money;
 import com.example.nune.moneytracker.Data.MoneyList;
 
 import java.util.ArrayList;
