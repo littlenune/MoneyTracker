@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nune.moneytracker.Data.Money;
 import com.example.nune.moneytracker.Data.MoneyList;
@@ -58,10 +59,14 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
 
     @Override
     public void onDialogMessage(Money m) {
-        moneyLists.get(currentIndex).getRecord().getMoneys().add(m);
-        updateAdapter(moneyLists);
-
-//            getBalance();
+        if ( m.getType().equals("Expense") && moneyLists.get(currentIndex).getRecord().getBalance()-m.getValue() < 0){
+            Toast.makeText(this,"Wrong amount.",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            moneyLists.get(currentIndex).getRecord().getMoneys().add(m);
+            updateAdapter(moneyLists);
+            balanceTv.setText(String.valueOf(moneyLists.get(currentIndex).getRecord().getBalance()));
+        }
     }
 
 }

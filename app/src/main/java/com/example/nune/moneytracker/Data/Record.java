@@ -8,20 +8,20 @@ import java.util.ArrayList;
 
 public class Record {
     ArrayList<Money> moneys;
-    double balance;
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
+    double balance = 0;
 
     public Record(){
         moneys = new ArrayList<Money>();
-        balance = 0;
+    }
 
+    public double getBalance() {
+        balance = 0;
+        for ( Money m : moneys){
+            if ( m.getType().equals("Expense") ) balance -= m.getValue();
+            else balance += m.getValue();
+        }
+
+        return balance;
     }
 
     public ArrayList<Money> getMoneys() {
@@ -31,4 +31,5 @@ public class Record {
     public void setMoneys(ArrayList<Money> moneys) {
         this.moneys = moneys;
     }
+
 }
