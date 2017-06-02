@@ -9,17 +9,15 @@ import com.example.nune.moneytracker.Data.MoneyList;
  */
 
 public class MoneyPresenter  {
-
     private MoneyView view;
-
     private MoneyList moneyList;
 
     private Money money;
 
-   public MoneyPresenter(MoneyView view){
+   public MoneyPresenter(MoneyView view,MoneyList moneyList){
+       this.moneyList = moneyList;
        this.view = view;
-
-
+       
    }
 
 }

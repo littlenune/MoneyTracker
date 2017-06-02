@@ -4,8 +4,12 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.example.nune.moneytracker.Data.Money;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -16,6 +20,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    Money money;
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
@@ -23,4 +28,12 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.example.nune.moneytracker", appContext.getPackageName());
     }
+
+//    @Test
+//    public void shouldReturnIncomeAfterAdd(){
+//        money = new Money()
+//        money.setValue(100);
+//        assertEquals(100,money.getValue());
+//    }
+
 }

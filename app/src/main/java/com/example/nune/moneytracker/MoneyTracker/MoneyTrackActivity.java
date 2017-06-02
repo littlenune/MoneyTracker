@@ -48,7 +48,7 @@ public class MoneyTrackActivity extends AppCompatActivity implements MoneyView {
 
         listView = (ListView) findViewById(R.id.moneyTrackerList);
 
-        setMoneyList(moneyLists);
+        updateAdapter(moneyLists);
 
         FloatingActionButton incomeBtn = (FloatingActionButton) findViewById(R.id.incomeButton);
         incomeBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,7 @@ public class MoneyTrackActivity extends AppCompatActivity implements MoneyView {
 
 
     @Override
-    public void setMoneyList(ArrayList<MoneyList> moneyLists) {
+    public void updateAdapter(ArrayList<MoneyList> moneyLists) {
         moneyArrayAdapter = new ColorAdapter<Money>(this, android.R.layout.select_dialog_item, moneyLists.get(currentIndex).getRecord().getMoneys());
         listView.setAdapter(moneyArrayAdapter);
 

@@ -10,6 +10,6 @@ import java.util.ArrayList;
  */
 
 public interface MoneyView {
-    void setMoneyList(ArrayList<MoneyList> moneyLists);
+    void updateAdapter(ArrayList<MoneyList> moneyLists);
     void showInputDialog();
 }

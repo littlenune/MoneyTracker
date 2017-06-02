@@ -24,6 +24,14 @@ public class Money {
 
     }
 
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -32,14 +40,6 @@ public class Money {
         this.description = description;
     }
 
-    public double getExpense() {
-
-        return value;
-    }
-
-    public void setExpense(double expense) {
-        this.value = expense;
-    }
 
     public String toString(){
         return value + " "  + description + " " + type;
