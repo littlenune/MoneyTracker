@@ -85,7 +85,6 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
 
     @Override
     public void onDialogMessage(Money m) {
-        Log.d("BALANCE",String.valueOf(presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()));
         if ( m.getType().equals("EXPENSE") && presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()-m.getValue() < 0){
             Toast.makeText(this,"Wrong amount.",Toast.LENGTH_SHORT).show();
         }

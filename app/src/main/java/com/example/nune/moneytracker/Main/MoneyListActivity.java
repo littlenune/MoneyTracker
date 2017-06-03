@@ -20,7 +20,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
     public static MoneyPresenter presenter;
 
-    public FloatingActionButton createListBtn;
+    public FloatingActionButton createListBtn,notiBtn,savingBtn;
     public ListView moneyListView;
     public ArrayAdapter<MoneyList> arrayAdapter;
 
@@ -48,6 +48,17 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
             }
 
         });
+
+        savingBtn = (FloatingActionButton) findViewById(R.id.balanceBtn);
+        savingBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MoneyListActivity.this,BalanceActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         createListBtn = (FloatingActionButton) findViewById(R.id.addMoneyListBtn);
         createListBtn.setOnClickListener(new View.OnClickListener() {
