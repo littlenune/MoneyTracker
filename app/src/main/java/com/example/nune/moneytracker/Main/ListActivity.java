@@ -1,17 +1,16 @@
 package com.example.nune.moneytracker.Main;
-
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.nune.moneytracker.Data.Money;
 import com.example.nune.moneytracker.Data.MoneyList;
 import com.example.nune.moneytracker.Fragment.ColorAdapter;
@@ -20,13 +19,12 @@ import com.example.nune.moneytracker.R;
 
 import java.util.ArrayList;
 
-import static com.example.nune.moneytracker.Main.MoneyListActivity.currentIndex;
-import static com.example.nune.moneytracker.Main.MoneyListActivity.moneyLists;
-
-public class ListActivity extends AppCompatActivity implements ListDialog.Communicator, MoneyView {
+import static com.example.nune.moneytracker.Main.MoneyListActivity.presenter;
 
 
-    public static ColorAdapter<Money> moneyArrayAdapter;
+public class ListActivity extends AppCompatActivity implements ListDialog.Communicator {
+
+    ColorAdapter<Money> moneyArrayAdapter;
     TextView balanceTxt;
     ListView listView;
     double balance;
@@ -36,7 +34,7 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
         super.onCreate(savedInstanceState);
         setContentView(R.layout.moneytrack_activity);
         balanceTxt = (TextView) findViewById(R.id.balanceTxt);
-        balanceTxt.setText(String.valueOf(moneyLists.get(currentIndex).getRecord().getBalance()));
+        balanceTxt.setText(String.valueOf(presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()));
         listView = (ListView) findViewById(R.id.moneyTrackerList);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -62,7 +60,7 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
             }
         });
 
-        updateAdapter(moneyLists);
+        updateAdapter(presenter.getMoneyLists());
         FloatingActionButton incomeBtn = (FloatingActionButton) findViewById(R.id.incomeButton);
         incomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +72,7 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
 
     @Override
     public void updateAdapter(ArrayList<MoneyList> moneyLists) {
-        moneyArrayAdapter = new ColorAdapter<Money>(this, android.R.layout.select_dialog_item, moneyLists.get(currentIndex).getRecord().getMoneys());
+        moneyArrayAdapter = new ColorAdapter<Money>(this, android.R.layout.select_dialog_item, presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getMoneys());
         listView.setAdapter(moneyArrayAdapter);
     }
 
@@ -87,20 +85,20 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
 
     @Override
     public void onDialogMessage(Money m) {
-        if ( m.getType().equals("Expense") && moneyLists.get(currentIndex).getRecord().getBalance()-m.getValue() < 0){
+        Log.d("BALANCE",String.valueOf(presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()));
+        if ( m.getType().equals("EXPENSE") && presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()-m.getValue() < 0){
             Toast.makeText(this,"Wrong amount.",Toast.LENGTH_SHORT).show();
         }
         else {
-            moneyLists.get(currentIndex).getRecord().getMoneys().add(m);
-            updateAdapter(moneyLists);
+            presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getMoneys().add(m);
+            updateAdapter(presenter.getMoneyLists());
             updateBalance();
         }
     }
 
     public void updateBalance(){
-        balance = moneyLists.get(currentIndex).getRecord().getBalance();
+        balance = presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance();
         balanceTxt.setText(String.valueOf(balance));
     }
 
 }
-

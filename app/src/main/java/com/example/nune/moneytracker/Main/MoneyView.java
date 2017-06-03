@@ -11,4 +11,7 @@ import java.util.ArrayList;
 public interface MoneyView {
     void updateAdapter(ArrayList<MoneyList> moneyLists);
     void showInputDialog();
+    void addList(MoneyList m);
+    ArrayList<MoneyList> getMoneyLists();
+    void setCurrentIndex(int index);
 }

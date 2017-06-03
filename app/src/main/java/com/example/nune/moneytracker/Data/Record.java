@@ -7,12 +7,14 @@ import java.util.ArrayList;
  */
 
 public class Record {
-    ArrayList<Money> moneys;
-    double balance = 0;
+    private ArrayList<Money> moneys;
+    private double balance;
 
     public Record(){
         moneys = new ArrayList<Money>();
+        balance = 0;
     }
+
 
     public double getBalance() {
         balance = 0;
@@ -20,6 +22,7 @@ public class Record {
             if ( m.getType().equals("EXPENSE") ) balance -= m.getValue();
             else balance += m.getValue();
         }
+
 
         return balance;
     }

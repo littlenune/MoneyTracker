@@ -52,7 +52,7 @@ public class MoneyDialog extends DialogFragment implements View.OnClickListener 
         title = String.valueOf(nameTxt.getText());
         if (v.getId() == R.id.createBtn) {
             if ( !title.equals("")) {
-                communicator.onDialogMessage(new MoneyList(title, new Record()));
+                communicator.onDialogMessage(new MoneyList(title,new Record()));
                 dismiss();
             }
             else Toast.makeText(getActivity(),"Please fill in list name",Toast.LENGTH_SHORT).show();

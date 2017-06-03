@@ -40,6 +40,10 @@ public class ListDialog extends DialogFragment implements View.OnClickListener  
     Calendar calendar = Calendar.getInstance();
 
     public interface Communicator {
+        void updateAdapter(ArrayList<MoneyList> moneyLists);
+
+        void showInputDialog();
+
         public void onDialogMessage(Money m);
     }
 

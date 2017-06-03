@@ -16,29 +16,38 @@ import com.example.nune.moneytracker.R;
 
 import java.util.ArrayList;
 
-public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.Communicator, MoneyView{
+public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.Communicator  {
 
-    MoneyPresenter presenter;
-    public static ArrayList<MoneyList> moneyLists;
-    public static int currentIndex;
+    public static MoneyPresenter presenter;
+
     public FloatingActionButton createListBtn;
     public ListView moneyListView;
-    public static ArrayAdapter<MoneyList> adapter;
+    public ArrayAdapter<MoneyList> arrayAdapter;
+
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.moneylist_activity);
+
+        presenter = new MoneyPresenter();
+        init();
+    }
+
+    private void init(){
+
         moneyListView = (ListView) findViewById(R.id.moneyList);
         moneyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                createMoney(position);
+                Intent intent = new Intent(MoneyListActivity.this, ListActivity.class);
+                presenter.setCurrentIndex(position);
+                startActivity(intent);
+
             }
 
         });
-        moneyLists = new ArrayList<MoneyList>();
 
         createListBtn = (FloatingActionButton) findViewById(R.id.addMoneyListBtn);
         createListBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,14 +59,12 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
         });
     }
 
-    @Override
-    public void updateAdapter(ArrayList<MoneyList> moneyLists) {
-        adapter = new ArrayAdapter<MoneyList>(this, android.R.layout.select_dialog_item, moneyLists);
-        moneyListView.setAdapter(adapter);
+    private void updateAdapter(ArrayList<MoneyList> moneyLists) {
+        arrayAdapter =  new ArrayAdapter<MoneyList>(this, android.R.layout.select_dialog_item, presenter.getMoneyLists());
+        moneyListView.setAdapter(arrayAdapter);
     }
 
-    @Override
-    public void showInputDialog() {
+    private void showInputDialog() {
         FragmentManager manager = getFragmentManager();
         MoneyDialog m = new MoneyDialog();
         m.show(manager,"MyDialog");
@@ -65,14 +72,8 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
     @Override
     public void onDialogMessage(MoneyList m) {
-        moneyLists.add(m);
-        updateAdapter(moneyLists);
-    }
-
-    public void createMoney(int position){
-        Intent intent = new Intent(MoneyListActivity.this, ListActivity.class);
-        startActivity(intent);
-        currentIndex = position;
+        presenter.addList(m);
+        updateAdapter(presenter.getMoneyLists());
     }
 }
 
