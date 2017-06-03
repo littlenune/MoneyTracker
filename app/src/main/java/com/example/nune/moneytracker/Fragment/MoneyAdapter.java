@@ -1,6 +1,8 @@
 package com.example.nune.moneytracker.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,7 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.nune.moneytracker.Data.MoneyList;
+import com.example.nune.moneytracker.Main.ListActivity;
+import com.example.nune.moneytracker.Main.MoneyListActivity;
 import com.example.nune.moneytracker.R;
 import java.util.ArrayList;
 
@@ -52,10 +58,25 @@ public class MoneyAdapter extends ArrayAdapter<MoneyList> {
             viewHolder.deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    adapter.remove(presenter.getMoneyLists().get(position));
-                    notifyDataSetChanged();
+                    final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                    alert.setMessage("Do you want to delete this from list");
+                    alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            adapter.remove(presenter.getMoneyLists().get(position));
+                            Toast.makeText(getContext(), "Removed from list", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    alert.show();
                 }
             });
+
             convertView.setTag(viewHolder);
         }
         else {
