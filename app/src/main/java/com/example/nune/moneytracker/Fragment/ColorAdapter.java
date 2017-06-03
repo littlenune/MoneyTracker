@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 
 import java.util.List;
 
+import static com.example.nune.moneytracker.Main.MoneyListActivity.presenter;
+
 /**
  * Created by nune on 5/29/2017 AD.
  */
@@ -24,7 +26,7 @@ public class ColorAdapter<Money> extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View view = super.getView(position, convertView, parent);
-        if (position % 2 == 1) {
+        if (presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getMoneys().get(position).getType().equals("EXPENSE") ) {
             view.setBackgroundColor(Color.rgb(240,118,114));
         } else {
             view.setBackgroundColor(Color.rgb(247,247,247));

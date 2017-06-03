@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.nune.moneytracker.Main.BalanceActivity"
     android:background="@drawable/bg">
-
-
+    
     <TextView
         android:id="@+id/totalBalance"
         android:layout_width="0dp"
