@@ -7,7 +7,9 @@ import android.widget.ArrayAdapter;
 
 import com.example.nune.moneytracker.Data.Money;
 import com.example.nune.moneytracker.Data.MoneyList;
+import com.example.nune.moneytracker.Fragment.MoneyAdapter;
 import com.example.nune.moneytracker.Fragment.MoneyDialog;
+import com.example.nune.moneytracker.R;
 
 import java.util.ArrayList;
 
@@ -43,4 +45,5 @@ public class MoneyPresenter implements MoneyView {
     public void setCurrentIndex(int currentIndex) {
         MoneyPresenter.currentIndex = currentIndex;
     }
+
 }

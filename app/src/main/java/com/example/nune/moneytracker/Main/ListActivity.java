@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -36,6 +35,8 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
         balanceTxt = (TextView) findViewById(R.id.balanceTxt);
         balanceTxt.setText(String.valueOf(presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()));
         listView = (ListView) findViewById(R.id.moneyTrackerList);
+        updateAdapter(presenter.getMoneyLists());
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -60,7 +61,6 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
             }
         });
 
-        updateAdapter(presenter.getMoneyLists());
         FloatingActionButton incomeBtn = (FloatingActionButton) findViewById(R.id.incomeButton);
         incomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +85,7 @@ public class ListActivity extends AppCompatActivity implements ListDialog.Commun
 
     @Override
     public void onDialogMessage(Money m) {
-        if ( m.getType().equals("EXPENSE") && presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()-m.getValue() < 0){
+        if ( m.getType().equals("Expense") && presenter.getMoneyLists().get(presenter.getCurrentIndex()).getRecord().getBalance()-m.getValue() < 0){
             Toast.makeText(this,"Wrong amount.",Toast.LENGTH_SHORT).show();
         }
         else {

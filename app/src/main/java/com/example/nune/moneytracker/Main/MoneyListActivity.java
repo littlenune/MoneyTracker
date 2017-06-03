@@ -7,13 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.example.nune.moneytracker.Data.MoneyList;
+import com.example.nune.moneytracker.Fragment.MoneyAdapter;
 import com.example.nune.moneytracker.Fragment.MoneyDialog;
 import com.example.nune.moneytracker.R;
-
 import java.util.ArrayList;
 
 public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.Communicator  {
@@ -22,7 +20,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
     public FloatingActionButton createListBtn,notiBtn,savingBtn;
     public ListView moneyListView;
-    public ArrayAdapter<MoneyList> arrayAdapter;
+    public static MoneyAdapter adapter;
 
 
     @Override
@@ -37,6 +35,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
     private void init(){
 
         moneyListView = (ListView) findViewById(R.id.moneyList);
+
         moneyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -48,6 +47,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
             }
 
         });
+        updateAdapter(presenter.getMoneyLists());
 
         savingBtn = (FloatingActionButton) findViewById(R.id.balanceBtn);
         savingBtn.setOnClickListener(new View.OnClickListener(){
@@ -58,7 +58,6 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
                 startActivity(intent);
             }
         });
-
 
         createListBtn = (FloatingActionButton) findViewById(R.id.addMoneyListBtn);
         createListBtn.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +70,8 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
     }
 
     private void updateAdapter(ArrayList<MoneyList> moneyLists) {
-        arrayAdapter =  new ArrayAdapter<MoneyList>(this, android.R.layout.select_dialog_item, presenter.getMoneyLists());
-        moneyListView.setAdapter(arrayAdapter);
+        adapter = new MoneyAdapter(this,R.layout.listview,presenter.getMoneyLists());
+        moneyListView.setAdapter(adapter);
     }
 
     private void showInputDialog() {
@@ -86,6 +85,9 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
         presenter.addList(m);
         updateAdapter(presenter.getMoneyLists());
     }
+
+
+
 }
 
 
