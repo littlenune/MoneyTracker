@@ -18,8 +18,8 @@ public class Money {
         this.type = type;
     }
 
-    public Money(double expense, String description, String type,String date){
-        this.value = expense;
+    public Money(double value, String description, String type,String date){
+        this.value = value;
         this.description = description;
         this.type = type;
         this.date = date;
