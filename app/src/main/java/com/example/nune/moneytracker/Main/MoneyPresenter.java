@@ -13,6 +13,8 @@ import com.example.nune.moneytracker.R;
 
 import java.util.ArrayList;
 
+import static com.example.nune.moneytracker.Main.MoneyListActivity.presenter;
+
 
 /**
  * Created by nune on 6/moneybg/2017 AD.
@@ -22,11 +24,21 @@ public class MoneyPresenter implements MoneyView {
 
     public static ArrayList<MoneyList> moneyLists;
     public static int currentIndex;
+    public static double totalBalance;
 
     public MoneyPresenter() {
+
         this.moneyLists = new ArrayList<MoneyList>();
+        totalBalance = 0;
     }
 
+    public double getTotalBalance(){
+        totalBalance = 0;
+        for (MoneyList m : moneyLists){
+            totalBalance += m.getRecord().getBalance();
+        }
+        return totalBalance;
+    }
 
     @Override
     public void addList(MoneyList m){

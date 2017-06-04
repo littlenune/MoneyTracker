@@ -27,6 +27,10 @@ public class Record {
         return balance;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public ArrayList<Money> getMoneys() {
         return moneys;
     }

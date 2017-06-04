@@ -1,5 +1,7 @@
 package com.example.nune.moneytracker.Data;
 
+import static com.example.nune.moneytracker.Main.MoneyListActivity.presenter;
+
 /**
  * Created by nune on 5/29/2017 AD.
  */
@@ -25,4 +27,6 @@ public class MoneyList {
     public String toString(){
         return getName() ;
     }
+
+
 }

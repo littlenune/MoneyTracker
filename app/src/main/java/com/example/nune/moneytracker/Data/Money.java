@@ -26,6 +26,10 @@ public class Money {
 
     }
 
+    public String getDate() {
+        return date;
+    }
+
     public double getValue() {
         return value;
     }

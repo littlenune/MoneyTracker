@@ -17,15 +17,8 @@ public class BalanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_balance);
-
         balanceTxt = (TextView) findViewById(R.id.totalBalance);
-
-        double balance = 0;
-        for (MoneyList m : presenter.getMoneyLists()){
-            balance += m.getRecord().getBalance();
-        }
-
-        balanceTxt.setText(String.valueOf(balance));
+        balanceTxt.setText(String.valueOf(presenter.getTotalBalance()));
 
     }
 }
