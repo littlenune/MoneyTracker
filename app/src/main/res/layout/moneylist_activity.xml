@@ -41,21 +41,6 @@
         tools:layout_constraintTop_creator="1" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/alarmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:clickable="true"
-        app:backgroundTint="@color/myColor"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@android:drawable/ic_lock_idle_alarm"
-        tools:layout_constraintLeft_creator="1" />
-
-    <android.support.design.widget.FloatingActionButton
         android:id="@+id/balanceBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

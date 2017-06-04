@@ -1,13 +1,21 @@
 package com.example.nune.moneytracker.Main;
 
+import android.app.AlarmManager;
 import android.app.FragmentManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import com.example.nune.moneytracker.Data.MoneyList;
 import com.example.nune.moneytracker.Fragment.MoneyAdapter;
 import com.example.nune.moneytracker.Fragment.MoneyDialog;
@@ -18,7 +26,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
     public static MoneyPresenter presenter;
 
-    public FloatingActionButton createListBtn,notiBtn,savingBtn;
+    public FloatingActionButton createListBtn,savingBtn;
     public ListView moneyListView;
     public static MoneyAdapter adapter;
 
@@ -30,6 +38,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
         presenter = new MoneyPresenter();
         init();
+
     }
 
     private void init(){
@@ -40,6 +49,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent intent = new Intent(MoneyListActivity.this, ListActivity.class);
                 presenter.setCurrentIndex(position);
                 startActivity(intent);
@@ -67,6 +77,7 @@ public class MoneyListActivity extends AppCompatActivity implements MoneyDialog.
 
             }
         });
+
     }
 
     private void updateAdapter(ArrayList<MoneyList> moneyLists) {
